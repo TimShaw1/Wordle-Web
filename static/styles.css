@@ -28,6 +28,11 @@ body
     background-color: #232323;
 }
 
+.alphabet
+{
+  position: relative;
+}
+
 #Title
 {
     color:white;
@@ -71,8 +76,13 @@ body
   width: fit-content;
   top: 20px;
   left: 60%;
+  z-index: -10;
 }
 
+.alphabet
+{
+  z-index: 20;
+}
 
 
 /* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */

@@ -87,10 +87,12 @@ const deviceType = () => {
 
 if (deviceType() != "desktop")
 {
-    document.getElementById('Alpha').hidden = true;
+    document.getElementById('Alpha').style.transform = 'scale(1.8)';
+    document.getElementById('Alpha').style.marginTop = '148%';
+    document.getElementById('Alpha').style.marginLeft = '32%';
     document.getElementById('Game').style.marginRight = '46%';
     document.getElementById('Title').style.marginRight = '46%';
-    document.getElementById($parameters.Id).focus();
+    
 }
 
 function setGuessed(guess, colors) {
@@ -281,6 +283,7 @@ function submit_message() {
 // referenced from https://stackoverflow.com/questions/1846599/how-to-find-out-what-character-key-is-pressed
 // get input key
 document.onkeydown = function (evt) {
+    console.log(evt)
     let id = j.toString().concat(",", i.toString());
     evt = evt || window.event;
     var charCode = evt.keyCode || evt.which;
@@ -336,3 +339,35 @@ document.onkeydown = function (evt) {
                 }
             }
 };
+
+document.querySelectorAll('.alphabet').forEach(item => {
+    item.addEventListener("click", (e) => {
+        const target = e.target;
+        console.log(target);
+        
+        if (!target.classList.contains("alphabet")) {
+            console.log(target)
+            return;
+        }
+        let key = target.textContent.trim();
+        console.log(key);
+        console.log('yes')
+
+        if (key === "Del") {
+            key = 8;
+        } 
+        else
+        {
+            if (key === "Enter")
+            {
+                key = 13;
+            }
+            else
+            {
+                key = key.charCodeAt(0);
+            }
+        }
+
+        document.dispatchEvent(new KeyboardEvent("keydown", {'keyCode': key}));
+    })
+});

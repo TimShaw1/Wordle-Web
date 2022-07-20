@@ -22,12 +22,26 @@
     {% for i in range(5) %}
     <div class="row d-flex justify-content-center">
         {% for j in range(6) %}
+        <div>
         {% if (j)+(i*6) < 26 %} <div class="col-sm, card" id="{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(j)+(i*6)]}}">
-            <h2>
+            <h2 class="alphabet">
                 {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(j)+(i*6)]}}
             </h2>
-    </div>
+        </div>
+        {% elif (j)+(i*6) == 26 %}
+        <div class="col-sm, card" id="Del">
+            <h2 class="alphabet">
+                Del
+            </h2>
+        </div>
+        {% elif (j)+(i*6) == 27 %}
+        <div class="col-sm, card" id="Enter">
+            <h2 class="alphabet">
+                Enter
+            </h2>
+        </div>
     {% endif %}
+    </div>
     {% endfor %}
 </div>
 {% endfor %}
