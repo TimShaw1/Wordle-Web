@@ -73,6 +73,26 @@ function checkWin(input) {
     return true;
 }
 
+// https://attacomsian.com/blog/javascript-detect-mobile-device#:~:text=To%20detect%20if%20the%20user,and%20platform%20of%20the%20browser.
+const deviceType = () => {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+        return "tablet";
+    }
+    else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        return "mobile";
+    }
+    return "desktop";
+};
+
+if (deviceType() != "desktop")
+{
+    document.getElementById('Alpha').hidden = true;
+    document.getElementById('Game').style.marginRight = '46%';
+    document.getElementById('Title').style.marginRight = '46%';
+    document.getElementById($parameters.Id).focus();
+}
+
 function setGuessed(guess, colors) {
     var id;
     const guessArray = guess.split('');

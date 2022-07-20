@@ -3,7 +3,7 @@
 
 {% block main %}
 <h1 id="Title">Wordle</h1>
-<div class="container, text-center">
+<div class="container, text-center" id="Game">
     {% for i in range(6) %}
     <div class="row d-flex justify-content-center" id="r{{i}}">
         {% for j in range(5) %}
@@ -18,7 +18,7 @@
     {% endfor %}
 </div>
 
-<div class="container, text-center, box overlay">
+<div class="container, text-center, box overlay" id="Alpha">
     {% for i in range(5) %}
     <div class="row d-flex justify-content-center">
         {% for j in range(6) %}
