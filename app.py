@@ -39,8 +39,6 @@ dict1 = np.load('solution_dict.npy', allow_pickle='TRUE').item()
 offset = random.randint(0,2297)
 myday = datetime.datetime.now()
 
-print(offset)
-
 
 # List to store green/yellow/gray letters
 colors = ['gray', 'gray', 'gray', 'gray', 'gray']
@@ -77,13 +75,13 @@ def game(word, sol_num):
 def home():
     global dict1, offset, myday
 
-    # Get guess from page
-    if request.method == "POST":
-        # If the day rolls over, change the offset to maintain security
+    if request.method == 'GET':
         if datetime.datetime.now().day > myday.day or datetime.datetime.now().month > myday.month or datetime.datetime.now().year > myday.year:
             offset = random.randint(0,2297)
-            print(offset)
             myday = datetime.datetime.now()
+
+    # Get guess from page
+    if request.method == "POST":
 
         guess = request.get_json()
         # If we lose
@@ -112,6 +110,3 @@ def home():
         return res
 
     return render_template("challenge.html")
-
-
-
