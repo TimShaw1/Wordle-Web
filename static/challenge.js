@@ -12,6 +12,22 @@ let trash_talk = true;
 
 document.cookie = "promo_shown=1; Max-Age=2600000; SameSite=None; Secure";
 
+let rando = Math.floor(Math.random() * (2298 - 0 + 1)) + 0;
+/*
+fetch(`${window.origin}/`, {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify([rando,1]),
+    cache: "no-cache",
+    headers: new Headers({
+        "content-type": "application/json"
+    })
+})
+.catch(function (error) {
+    console.log("Fetch error: " + error);
+});
+*/
+
 // Preload leaving sound
 let leave_sound = new Audio('https://docs.google.com/uc?export=download&id=1BPYPf8qlrOMA1CyFttQ_P023hwDNB0aq');
 
@@ -96,7 +112,7 @@ function submit_message() {
     fetch(`${window.origin}/`, {
         method: "POST",
         credentials: "include",
-        body: JSON.stringify(guess),
+        body: JSON.stringify([guess, rando]),
         cache: "no-cache",
         headers: new Headers({
             "content-type": "application/json"
@@ -123,9 +139,7 @@ function submit_message() {
                         if (data["bot_words"])
                         {
                             bot_words = data["bot_words"];
-                            console.log(bot_words);
                             bot_colors = data["bot_all_colors"];
-                            console.log(bot_colors);
                             for (var q = 0; q < 6; q++) {
                                 for (var k = 0; k < 5; k++) {
                                     // Set letters
