@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %} Wordle {% endblock %}
+
+{% block main %}
+<h1 id="Title">Wordle</h1>
+<div class="container, text-center">
+    {% for i in range(6) %}
+    <div class="row d-flex justify-content-center" id="r{{i}}">
+        {% for j in range(5) %}
+        <div class="col-sm, card" id="{{i}}/{{j}}">
+            <h1 id="{{i}},{{j}}">
+                &ensp;
+            </h1>
+        </div>
+        <div style="padding-left: 10px;"></div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+<div class="container, text-center, box overlay">
+    {% for i in range(5) %}
+    <div class="row d-flex justify-content-center">
+        {% for j in range(6) %}
+        {% if (j)+(i*6) < 26 %} <div class="col-sm, card" id="{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(j)+(i*6)]}}">
+            <h2>
+                {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(j)+(i*6)]}}
+            </h2>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endfor %}
+</div>
+<div class="container, text-center">
+<div id="top_10_title" class="justify-content-center">
+    <h3>Top 10</h3>
+    <h5 id="top_10">
+        aeros <br> <br>
+        soare <br> <br>
+        arose <br> <br>
+        aesir <br> <br>
+        aloes <br> <br>
+        reais <br> <br>
+        serai <br> <br>
+        arise <br> <br>
+        raise <br> <br>
+        arles
+    </h5>
+
+</div>
+</div>
+
+<br>
+
+<div id="front-button">
+        <input type="submit" id="again" class="btn btn-primary" value="Play Again" onClick="window.location.reload();">
+</div>
+
+<script type="text/javascript" src='/static/home.js'></script>
+{% endblock %}
