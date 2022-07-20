@@ -8,7 +8,6 @@ from flask_session import Session
 
 import numpy as np
 import random
-import datetime
 
 app = Flask(__name__)
 app.secret_key = 'BAD_SECRET_KEY'
@@ -36,9 +35,6 @@ challenge = True
 
 dict1 = np.load('solution_dict.npy', allow_pickle='TRUE').item()
 
-offset = random.randint(0,2297)
-myday = datetime.datetime.now()
-
 
 # List to store green/yellow/gray letters
 colors = ['gray', 'gray', 'gray', 'gray', 'gray']
@@ -52,14 +48,14 @@ def game(word, sol_num):
 
     # Check for green letters
     for i in range(5):
-        if word_list[i] == dict1[(sol_num+offset)%2298][1][i]:
+        if word_list[i] == dict1[sol_num][1][i]:
             colors[i] = 'green'
 
     # Check for yellow letters
     for i in range(5):
         for j in range(5):
             # if we haven't checked the letter already, and if it is in the word, make it yellow
-            if word_list[i] == dict1[(sol_num+offset)%2298][1][j] and colors[i] == 'gray':
+            if word_list[i] == dict1[sol_num][1][j] and colors[i] == 'gray':
                 colors[i] = 'gold'
                 
 
@@ -73,26 +69,20 @@ def game(word, sol_num):
 # Server stuff
 @app.route("/", methods=['POST', 'GET'])
 def home():
-    global dict1, offset, myday
-
-    if request.method == 'GET':
-        if datetime.datetime.now().day > myday.day or datetime.datetime.now().month > myday.month or datetime.datetime.now().year > myday.year:
-            offset = random.randint(0,2297)
-            myday = datetime.datetime.now()
+    global dict1
 
     # Get guess from page
     if request.method == "POST":
-
         guess = request.get_json()
         # If we lose
         if guess[0] == "loss":
             if challenge:
-                res = make_response({"bot_words": bot_dict[dict1[(guess[1]+offset)%2298][0].upper()][0], "bot_all_colors": bot_dict[dict1[(guess[1]+offset)%2298][0].upper()][1:][0], "solution": dict1[(guess[1]+offset)%2298][0]}, 200)
+                res = make_response({"bot_words": bot_dict[dict1[guess[1]][0].upper()][0], "bot_all_colors": bot_dict[dict1[guess[1]][0].upper()][1:][0], "solution": dict1[guess[1]][0]}, 200)
             else:
-                res = make_response({"solution": dict1[(guess[1]+offset)%2298][0]}, 200)
+                res = make_response({"solution": dict1[guess[1]][0]}, 200)
             return res
         # Check the word
-        game_colors = game(guess[0], (guess[1]+offset)%2298)
+        game_colors = game(guess[0], guess[1])
         send_colors = []
         for i in range(len(game_colors)):
             send_colors.append(game_colors[i])
@@ -102,11 +92,14 @@ def home():
             res = make_response({"message": "invalid"}, 200)
         # Check for win
         elif game_colors == win:
-            res = make_response({"message": send_colors, "bot_words": bot_dict[dict1[(guess[1]+offset)%2298][0].upper()][0], "bot_all_colors": bot_dict[dict1[(guess[1]+offset)%2298][0].upper()][1:][0]}, 200)
+            res = make_response({"message": send_colors, "bot_words": bot_dict[dict1[guess[1]][0].upper()][0], "bot_all_colors": bot_dict[dict1[guess[1]][0].upper()][1:][0]}, 200)
         # Send back colors
         else:
-            res = make_response({"message": send_colors, "bot_colors":bot_dict[dict1[(guess[1]+offset)%2298][0].upper()][1:][0]}, 200)
+            res = make_response({"message": send_colors, "bot_colors":bot_dict[dict1[guess[1]][0].upper()][1:][0]}, 200)
                 
         return res
 
     return render_template("challenge.html")
+
+
+
