@@ -264,14 +264,17 @@ function submit_message() {
                         // If we win, stop taking guesses
                         if (checkWin(colors)) {
                             checkTrash()
-                            if (j >= bot_colors.length && trash_talk)
+                            if (j >= bot_colors.length)
                             {
-                                lose_links[Math.floor(Math.random() * lose_links.length)].play();
+                                if (trash_talk)
+                                {
+                                    lose_links[Math.floor(Math.random() * lose_links.length)].play();
+                                }
                             }
                             else
                             {
                                 document.getElementById("bot_list").hidden = true;
-                                leave_sound.play()
+                                leave_sound.play();
                             }
                             j = -1;
                             document.getElementById("again").value = "Press Enter";
