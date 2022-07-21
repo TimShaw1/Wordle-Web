@@ -7,8 +7,19 @@ let guess = "";
 let colors = [];
 let win = ['green', 'green', 'green', 'green', 'green'];
 let waiting = false;
+let trash_talk = false;
 
-let trash_talk = true;
+function checkTrash()
+{
+    if (document.getElementById("trash").checked == true)
+    {
+        trash_talk = true;
+    }
+    else
+    {
+        trash_talk = false;
+    }
+}
 
 document.cookie = "promo_shown=1; Max-Age=2600000; SameSite=None; Secure";
 
@@ -180,6 +191,8 @@ function submit_message() {
                                 }
                             }
                         }
+                        
+                        checkTrash()
                         if (trash_talk)
                         {
                             lose_links[Math.floor(Math.random() * lose_links.length)].play();
@@ -213,6 +226,7 @@ function submit_message() {
 
                                 waiting = false;
                             }
+                            checkTrash()
                             if (j < 5 && trash_talk) {
                                 guess_links[Math.floor(Math.random() * guess_links.length)].play();
                             }
@@ -249,6 +263,7 @@ function submit_message() {
 
                         // If we win, stop taking guesses
                         if (checkWin(colors)) {
+                            checkTrash()
                             if (j >= bot_colors.length && trash_talk)
                             {
                                 lose_links[Math.floor(Math.random() * lose_links.length)].play();
@@ -283,7 +298,6 @@ function submit_message() {
 // referenced from https://stackoverflow.com/questions/1846599/how-to-find-out-what-character-key-is-pressed
 // get input key
 document.onkeydown = function (evt) {
-    console.log(evt)
     let id = j.toString().concat(",", i.toString());
     evt = evt || window.event;
     var charCode = evt.keyCode || evt.which;
@@ -343,15 +357,11 @@ document.onkeydown = function (evt) {
 document.querySelectorAll('.alphabet').forEach(item => {
     item.addEventListener("click", (e) => {
         const target = e.target;
-        console.log(target);
         
         if (!target.classList.contains("alphabet")) {
-            console.log(target)
             return;
         }
         let key = target.textContent.trim();
-        console.log(key);
-        console.log('yes')
 
         if (key === "Del") {
             key = 8;

@@ -84,6 +84,11 @@ body
   z-index: 20;
 }
 
+.trash-talk
+{
+  transform: scale(1.5);
+}
+
 
 /* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
 @keyframes shake {

@@ -3,6 +3,8 @@
 
 {% block main %}
 <h1 id="Title">Wordle</h1>
+<input type="checkbox" id="trash" class="trash-talk" name="trash" value="Trash Talk" style="z-index: 30;">
+<label for="trash" class="trash-talk"style="color:white"> &ensp;&ensp;Trash Talk</label>
 <div class="container, text-center" id="Game">
     {% for i in range(6) %}
     <div class="row d-flex justify-content-center" id="r{{i}}">
