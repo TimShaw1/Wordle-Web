@@ -89,6 +89,16 @@ body
   transform: scale(1.5);
 }
 
+#Del
+{
+  user-select: none;
+}
+
+#Enter
+{
+  user-select: none;
+}
+
 
 /* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
 @keyframes shake {

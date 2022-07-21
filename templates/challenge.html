@@ -10,7 +10,7 @@
     <div class="row d-flex justify-content-center" id="r{{i}}">
         {% for j in range(5) %}
         <div class="col-sm, card" id="{{i}}/{{j}}">
-            <h1 id="{{i}},{{j}}">
+            <h1 id="{{i}},{{j}}" style="user-select: none;">
                 _
             </h1>
         </div>
@@ -26,7 +26,7 @@
         {% for j in range(6) %}
         <div>
         {% if (j)+(i*6) < 26 %} <div class="col-sm, card" id="{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(j)+(i*6)]}}">
-            <h2 class="alphabet">
+            <h2 class="alphabet" style="user-select: none;">
                 {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(j)+(i*6)]}}
             </h2>
         </div>
@@ -54,7 +54,7 @@
     <div class="row d-flex" id="rr{{i}}">
         {% for j in range(5) %}
         <div class="col-sm, card" id="{{i}}//{{j}}">
-            <h1 id="{{i}},,{{j}}">
+            <h1 id="{{i}},,{{j}}" style="user-select: none;">
                 &ensp;
             </h1>
         </div>
