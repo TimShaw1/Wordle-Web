@@ -41,28 +41,43 @@ colors = ['gray', 'gray', 'gray', 'gray', 'gray']
 temp_colors = ['gray', 'gray', 'gray', 'gray', 'gray']
 win = ['green','green','green','green','green']
 
+solution_dict = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0, 'H': 0, 'I': 0, 'J': 0, 'K': 0, 'L': 0, 'M': 0, 'N': 0, 'O': 0, 'P': 0, 'Q': 0, 'R': 0, 'S': 0, 'T': 0, 'U': 0, 'V': 0, 'W': 0, 'X': 0, 'Y': 0, 'Z': 0}
+temp_solution_dict = solution_dict.copy()
+
+
 def game(word, sol_num):
     global dict1
     word = word.upper()
     word_list = split(word)
 
+    print(dict1[sol_num][1])
+
+    for letter in dict1[sol_num][1]:
+        solution_dict[letter] += 1
+
     # Check for green letters
     for i in range(5):
         if word_list[i] == dict1[sol_num][1][i]:
             colors[i] = 'green'
+            solution_dict[word_list[i]] -= 1
 
     # Check for yellow letters
     for i in range(5):
         for j in range(5):
             # if we haven't checked the letter already, and if it is in the word, make it yellow
-            if word_list[i] == dict1[sol_num][1][j] and colors[i] == 'gray':
+            if solution_dict[word_list[i]] > 0 and word_list[i] == dict1[sol_num][1][j] and colors[i] == 'gray':
                 colors[i] = 'gold'
+                solution_dict[word_list[i]] -= 1
                 
 
     # Reset colors to gray
     for i in range(5):
         temp_colors[i] = colors[i]
         colors[i] = 'gray'
+
+    # Reset dict to original dictionary
+    solution_dict.clear()
+    solution_dict.update(temp_solution_dict)
 
     return temp_colors
 
