@@ -50,8 +50,6 @@ def game(word, sol_num):
     word = word.upper()
     word_list = split(word)
 
-    print(dict1[sol_num][1])
-
     for letter in dict1[sol_num][1]:
         solution_dict[letter] += 1
 
