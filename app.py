@@ -25,15 +25,13 @@ solutions = np.load('solutions.npy', allow_pickle='TRUE')
 
 guesses = np.load('guesses.npy', allow_pickle='TRUE')
 
-bot_dict = np.load('bot_full_dict.npy', allow_pickle=True).item()
-
 # Function to split word into list of letters
 def split(word):
     return [char for char in word]
 
 challenge = True
 
-dict1 = np.load('solution_dict.npy', allow_pickle='TRUE').item()
+npy_solution_dict = np.load('solution_dict.npy', allow_pickle='TRUE').item()
 
 
 # List to store green/yellow/gray letters
@@ -46,16 +44,16 @@ temp_solution_dict = solution_dict.copy()
 
 
 def game(word, sol_num):
-    global dict1
+    global npy_solution_dict
     word = word.upper()
     word_list = split(word)
 
-    for letter in dict1[sol_num][1]:
+    for letter in npy_solution_dict[sol_num][1]:
         solution_dict[letter] += 1
 
     # Check for green letters
     for i in range(5):
-        if word_list[i] == dict1[sol_num][1][i]:
+        if word_list[i] == npy_solution_dict[sol_num][1][i]:
             colors[i] = 'green'
             solution_dict[word_list[i]] -= 1
 
@@ -63,7 +61,7 @@ def game(word, sol_num):
     for i in range(5):
         for j in range(5):
             # if we haven't checked the letter already, and if it is in the word, make it yellow
-            if solution_dict[word_list[i]] > 0 and word_list[i] == dict1[sol_num][1][j] and colors[i] == 'gray':
+            if solution_dict[word_list[i]] > 0 and word_list[i] == npy_solution_dict[sol_num][1][j] and colors[i] == 'gray':
                 colors[i] = 'gold'
                 solution_dict[word_list[i]] -= 1
                 
@@ -82,7 +80,7 @@ def game(word, sol_num):
 # Server stuff
 @app.route("/", methods=['POST', 'GET'])
 def home():
-    global dict1
+    global npy_solution_dict
 
     # Get guess from page
     if request.method == "POST":
@@ -90,9 +88,9 @@ def home():
         # If we lose
         if guess[0] == "loss":
             if challenge:
-                res = make_response({"bot_words": bot_dict[dict1[guess[1]][0].upper()][0], "bot_all_colors": bot_dict[dict1[guess[1]][0].upper()][1:][0], "solution": dict1[guess[1]][0]}, 200)
+                res = make_response({"bot_words": bot_dict[npy_solution_dict[guess[1]][0].upper()][0], "bot_all_colors": bot_dict[npy_solution_dict[guess[1]][0].upper()][1:][0], "solution": npy_solution_dict[guess[1]][0]}, 200)
             else:
-                res = make_response({"solution": dict1[guess[1]][0]}, 200)
+                res = make_response({"solution": npy_solution_dict[guess[1]][0]}, 200)
             return res
         # Check the word
         game_colors = game(guess[0], guess[1])
@@ -105,10 +103,10 @@ def home():
             res = make_response({"message": "invalid"}, 200)
         # Check for win
         elif game_colors == win:
-            res = make_response({"message": send_colors, "bot_words": bot_dict[dict1[guess[1]][0].upper()][0], "bot_all_colors": bot_dict[dict1[guess[1]][0].upper()][1:][0]}, 200)
+            res = make_response({"message": send_colors, "bot_words": bot_dict[npy_solution_dict[guess[1]][0].upper()][0], "bot_all_colors": bot_dict[npy_solution_dict[guess[1]][0].upper()][1:][0]}, 200)
         # Send back colors
         else:
-            res = make_response({"message": send_colors, "bot_colors":bot_dict[dict1[guess[1]][0].upper()][1:][0]}, 200)
+            res = make_response({"message": send_colors, "bot_colors":bot_dict[npy_solution_dict[guess[1]][0].upper()][1:][0]}, 200)
                 
         return res
 
