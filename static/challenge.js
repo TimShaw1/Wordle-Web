@@ -377,6 +377,12 @@ document.querySelectorAll('.alphabet').forEach(item => {
             }
             else
             {
+                let letter = document.getElementById(key);
+                letter.classList.add("alphabetAnim");
+                setTimeout(function(){
+                    letter.classList.remove("alphabetAnim")
+                }, 100);
+
                 key = key.charCodeAt(0);
             }
         }

@@ -24,7 +24,7 @@
     {% for i in range(5) %}
     <div class="row d-flex justify-content-center">
         {% for j in range(6) %}
-        <div>
+        <div style="padding:5px;">
         {% if (j)+(i*6) < 26 %} <div class="col-sm, card" id="{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(j)+(i*6)]}}">
             <h2 class="alphabet" style="user-select: none;">
                 {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(j)+(i*6)]}}

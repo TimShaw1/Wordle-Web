@@ -33,6 +33,15 @@ body
   position: relative;
 }
 
+.alphabetAnim
+{
+  animation: bodybg 0.1s 0s linear infinite alternate;
+}
+
+@keyframes bodybg{
+  to     {background:darkgray;}
+}
+
 #Title
 {
     color:white;
