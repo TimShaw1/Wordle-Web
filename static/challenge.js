@@ -368,12 +368,23 @@ document.querySelectorAll('.alphabet').forEach(item => {
 
         if (key === "Del") {
             key = 8;
+            let letter = document.getElementById("Del");
+            letter.classList.add("alphabetAnim");
+            setTimeout(function(){
+                letter.classList.remove("alphabetAnim")
+            }, 100);
         } 
         else
         {
             if (key === "Enter")
             {
                 key = 13;
+                let letter = document.getElementById("Enter");
+                letter.classList.add("alphabetAnim");
+                setTimeout(function(){
+                    letter.classList.remove("alphabetAnim")
+                }, 100);
+                
             }
             else
             {
