@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block title %} Tim Shaw's Wordle Bot {% endblock %}
+
+{% block main %}
+<div class="horizontal-align">
+
+    <div class="vertical-align" id="alpha-align">
+        <div class="container, text-center, box overlay" id="Alpha">
+            {% for i in range(5) %}
+            <div class="row d-flex justify-content-center">
+                {% for j in range(6) %}
+                <div style="padding:5px;">
+                {% if (j)+(i*6) < 26 %} <div class="col-sm, card" id="{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(j)+(i*6)]}}">
+                    <h2 class="alphabet" style="user-select: none;">
+                        {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[(j)+(i*6)]}}
+                    </h2>
+                </div>
+                {% elif (j)+(i*6) == 26 %}
+                <div class="col-sm, card" id="Del">
+                    <h2 class="alphabet">
+                        Del
+                    </h2>
+                </div>
+                {% elif (j)+(i*6) == 27 %}
+                <div class="col-sm, card" id="Enter">
+                    <h2 class="alphabet">
+                        Enter
+                    </h2>
+                </div>
+            {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <input type="checkbox" id="trash" class="trash-talk" name="trash" value="Trash Talk" style="z-index: 30;">
+        <label for="trash" class="trash-talk"style="color:white"> &ensp;&ensp;Trash Talk</label>
+    </div>
+    </div>
+
+    <div class="vertical-align" id="game-align">
+        <a href="https://www.youtube.com/channel/UCBy8NZb2rnk-eV6b9fjweFg"><h1 id="Title">Wordle</h1></a>
+        <div class="container, text-center" id="Game">
+            {% for i in range(6) %}
+            <div class="row d-flex justify-content-center" id="r{{i}}">
+                {% for j in range(5) %}
+                <div class="col-sm, card" id="{{i}}/{{j}}">
+                    <h1 id="{{i}},{{j}}" class="boldy" style="user-select: none;">
+                        _
+                    </h1>
+                </div>
+                <div style="padding-left: 10px;"></div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="vertical-align" id="bot-align">
+        <div class="container, text-center, box overlay" id="bot_list">
+            <h1 id="Bot_Title" style="user-select: none;">Bot</h1>
+            {% for i in range(6) %}
+            <div class="row d-flex" id="rr{{i}}">
+                {% for j in range(5) %}
+                <div class="col-sm, card" id="{{i}}//{{j}}">
+                    <h1 id="{{i}},,{{j}}" class="boldy" style="user-select: none;">
+                        &ensp;
+                    </h1>
+                </div>
+                <div style="padding-left: 10px;"></div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src='/static/challenge.js'></script>
+{% endblock %}

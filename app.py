@@ -110,7 +110,7 @@ def home():
                 
         return res
 
-    return render_template("challenge.html")
+    return render_template("challenge2.html")
 
 
 

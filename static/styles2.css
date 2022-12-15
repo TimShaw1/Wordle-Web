@@ -1,8 +1,17 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
 .card
 {
     padding:10px;
     background-color:rgb(238, 238, 238);
-    resize: none;
 }
 
 .row
@@ -12,10 +21,8 @@
 
 .box
 {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    margin-right: 25%;
+    max-width: 100%;
+    position:relative;
 }
 
 .overlay {
@@ -45,19 +52,13 @@ body
 {
     color:white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 6.85%;
 }
 
 #Bot_Title
 {
     color:white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    position:relative;
-    justify-content: center;
-}
-
-#bot-align
-{
-  padding-left: 5%;
 }
 
 #top_10
@@ -79,42 +80,23 @@ body
   left: 65%;
 }
 
-#front-button
-{
-  z-index: 10;
-  position: relative;
-}
-
 #bot_list
 {
   position: relative;
   width: fit-content;
   z-index: -10;
-  margin: auto;
+  padding-left: 2%;
 }
 
 .alphabet
 {
   z-index: 20;
-  font-size:x-large;
-}
-
-.boldy
-{
-  font-size:xx-large;
-  width: 2rem;
-}
-
-#alpha-align
-{
-  position: relative;
-  padding-right: 2%;
 }
 
 .trash-talk
 {
   transform: scale(1.5);
-  padding-top: 5px;
+  margin-top: 2%;
 }
 
 #Del
@@ -125,6 +107,14 @@ body
 #Enter
 {
   user-select: none;
+}
+
+#Alpha
+{
+  top: 50%;
+  left:35%;
+  position: absolute;
+  scale: 1.8;
 }
 
 .vertical-align {
@@ -139,6 +129,18 @@ body
   flex-direction: row;
   align-items: center; 
   justify-content: center;
+  max-width: 100%;
+}
+
+#bot-align
+{
+  padding-left: 12%;
+  scale: 1.2;
+}
+
+#game-align
+{
+  scale: 1.2;
 }
 
 

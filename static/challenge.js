@@ -84,28 +84,6 @@ function checkWin(input) {
     return true;
 }
 
-// https://attacomsian.com/blog/javascript-detect-mobile-device#:~:text=To%20detect%20if%20the%20user,and%20platform%20of%20the%20browser.
-const deviceType = () => {
-    const ua = navigator.userAgent;
-    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-        return "tablet";
-    }
-    else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-        return "mobile";
-    }
-    return "desktop";
-};
-
-if (deviceType() != "desktop")
-{
-    document.getElementById('Alpha').style.transform = 'scale(1.8)';
-    document.getElementById('Alpha').style.marginTop = '148%';
-    document.getElementById('Alpha').style.marginLeft = '32%';
-    document.getElementById('Game').style.marginRight = '46%';
-    document.getElementById('Title').style.marginRight = '46%';
-    
-}
-
 function setGuessed(guess, colors) {
     var id;
     const guessArray = guess.split('');
@@ -277,14 +255,12 @@ function submit_message() {
                                 leave_sound.play();
                             }
                             j = -1;
-                            document.getElementById("again").value = "Press Enter";
                             return;
                         }
 
                         // Tell the server if we lost
                         if (j == 6) {
                             guess = "loss";
-                            document.getElementById("again").value = "Press Enter";
                             submit_message();
                         }
 
