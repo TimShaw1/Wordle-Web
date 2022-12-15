@@ -112,7 +112,7 @@ body
 #Alpha
 {
   top: 55%;
-  left:35%;
+  left:33%;
   position: absolute;
   scale: 1.8;
 }
@@ -144,6 +144,11 @@ body
   scale: 1.2;
 }
 
+.boldy
+{
+  font-size:xx-large;
+  width: 2rem;
+}
 
 /* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
 @keyframes shake {
