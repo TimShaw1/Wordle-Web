@@ -111,7 +111,7 @@ body
 
 #Alpha
 {
-  top: 50%;
+  top: 55%;
   left:35%;
   position: absolute;
   scale: 1.8;
@@ -130,6 +130,7 @@ body
   align-items: center; 
   justify-content: center;
   max-width: 100%;
+  padding-top: 5%;
 }
 
 #bot-align
